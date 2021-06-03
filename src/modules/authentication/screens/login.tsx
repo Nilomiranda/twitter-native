@@ -34,8 +34,17 @@ interface LoginProps {
 }
 
 const validationSchema = yup.object().shape({
-  email: yup.string().email('Invalid email').required('This field is required'),
-  nickname: yup.string().required('This field is required'),
+  email: yup
+    .string()
+    .email('Invalid email')
+    .test('nickname-present', 'Email is required', function (value) {
+      return !(!this.parent.nickname && !value)
+    }),
+  nickname: yup
+    .string()
+    .test('email-present', 'Nickname is required', function (value) {
+      return !(!this.parent.email && !value)
+    }),
   password: yup.string().required('This field is required'),
 })
 
