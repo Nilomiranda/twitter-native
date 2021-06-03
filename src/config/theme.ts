@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper'
+import { DefaultTheme} from 'react-native-paper'
 
 const theme = {
   ...DefaultTheme,
