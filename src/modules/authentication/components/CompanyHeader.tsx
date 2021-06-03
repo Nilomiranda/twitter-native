@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from "styled-components/native";
+import styled from 'styled-components/native'
 
 const MainView = styled.View`
   align-items: center;
@@ -17,18 +17,17 @@ const ChistLogo = styled.Image`
 const StyledSubheading = styled.Text`
   font-size: 32px;
   margin-top: 16px;
-  
 `
 
 interface CompanyHeaderProps {
-  subheading?: string;
+  subheading?: string
 }
 
 const CompanyHeader = ({ subheading }: CompanyHeaderProps) => {
   return (
     <MainView>
       <ChistLogo source={{ uri: 'https://i.imgur.com/FeuUYsF.png' }} />
-      { subheading ? <StyledSubheading>{subheading}</StyledSubheading> : null }
+      {subheading ? <StyledSubheading>{subheading}</StyledSubheading> : null}
     </MainView>
   )
 }

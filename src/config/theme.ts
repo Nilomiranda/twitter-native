@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import * as React from 'react'
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper'
 
 const theme = {
   ...DefaultTheme,
@@ -10,7 +10,7 @@ const theme = {
     accent: '#f1c40f',
     dark: '#222222',
   },
-};
+}
 
 export const fontSizes = {
   xs: 4,

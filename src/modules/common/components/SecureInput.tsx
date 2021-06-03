@@ -1,6 +1,11 @@
-import React, {useState} from 'react'
-import {TextInput} from "react-native-paper";
-import {NativeSyntheticEvent, StyleProp, TextInputChangeEventData, TextStyle} from "react-native";
+import React, { useState } from 'react'
+import { TextInput } from 'react-native-paper'
+import {
+  NativeSyntheticEvent,
+  StyleProp,
+  TextInputChangeEventData,
+  TextStyle,
+} from 'react-native'
 
 interface SecureInputProps {
   label?: string
@@ -17,7 +22,11 @@ const SecureInput = ({ ...props }: SecureInputProps) => {
   }
 
   return (
-    <TextInput secureTextEntry={!showingSecurePassword} right={<TextInput.Icon onPress={handleRevealSecureText} name="eye" />} {...props} />
+    <TextInput
+      secureTextEntry={!showingSecurePassword}
+      right={<TextInput.Icon onPress={handleRevealSecureText} name="eye" />}
+      {...props}
+    />
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import {TouchableOpacity} from "react-native";
-import Text from "./Text";
+import { TouchableOpacity } from 'react-native'
+import Text from './Text'
 
 interface LinkButtonProps {
   children: React.ReactNode
@@ -12,14 +12,16 @@ interface LinkButtonProps {
 const LinkButton = ({ children, onPress, ...props }: LinkButtonProps) => {
   return (
     <TouchableOpacity onPress={() => onPress()}>
-      <Text color="primary" {...props}>{children}</Text>
+      <Text color="primary" {...props}>
+        {children}
+      </Text>
     </TouchableOpacity>
   )
 }
 
 LinkButton.defaultProps = {
   color: 'primary',
-  fontSize: 'md'
+  fontSize: 'md',
 }
 
 export default LinkButton
