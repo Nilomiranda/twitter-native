@@ -16,7 +16,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "ignorePatterns": ["babel.config.js", "metro.config.js"],
+  "ignorePatterns": ["babel.config.js", "metro.config.js", "app.config.js"],
   "rules": {
     "react/no-unescaped-entities": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,

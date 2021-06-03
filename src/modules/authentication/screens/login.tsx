@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Divider } from 'react-native-paper'
 import styled from 'styled-components/native'
 import CompanyHeader from '../components/CompanyHeader'
@@ -10,6 +10,10 @@ import * as yup from 'yup'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Input from '../../common/components/Input'
+import { useMutation } from 'react-query'
+import { signIn, SignInPayload } from '../../../services/session'
+import { Session } from '../../../interfaces/session'
+import { AxiosResponse } from 'axios'
 
 const MainView = styled.ScrollView.attrs({
   contentContainerStyle: {
@@ -36,6 +40,8 @@ const validationSchema = yup.object().shape({
 })
 
 const Login = ({ navigation }: LoginProps) => {
+  const [signingIn, setSignigIn] = useState<boolean>(false)
+
   const {
     handleSubmit,
     control,
@@ -44,13 +50,42 @@ const Login = ({ navigation }: LoginProps) => {
     resolver: yupResolver(validationSchema),
   })
 
+  const loginMutation = useMutation<
+    AxiosResponse<{ data: Session }>,
+    unknown,
+    SignInPayload
+  >((signInMutation) => signIn(signInMutation))
+
   const handleNavigateToSignUpClick = () => {
     navigation?.navigate('SignUp')
   }
 
-  const handleLoginPress = (data) => {
-    console.log('errors', errors)
-    console.log('data', data)
+  const handleLoginPress = async ({
+    email,
+    nickname,
+    password,
+  }: {
+    email: string
+    nickname: string
+    password: string
+  }) => {
+    setSignigIn(true)
+
+    try {
+      const res = await loginMutation?.mutateAsync({
+        email,
+        nickname,
+        password,
+      })
+
+      if (res?.data?.data?.token) {
+        navigation?.navigate('Feed')
+      }
+    } catch (err) {
+      console.log('sign in error', err)
+    } finally {
+      setSignigIn(false)
+    }
   }
 
   return (
@@ -112,6 +147,8 @@ const Login = ({ navigation }: LoginProps) => {
         mode="contained"
         style={{ marginBottom: 24 }}
         onPress={handleSubmit(handleLoginPress)}
+        loading={signingIn}
+        disabled={signingIn}
       >
         Login
       </Button>

@@ -24,6 +24,7 @@ const getQueryParams = (
 }
 
 const defaultQueryFunction = async ({ queryKey }: { queryKey: any }) => {
+  console.log('API_URL', process.env.API_URL)
   const baseEndpoint = typeof queryKey === 'object' ? queryKey[0] : queryKey
 
   const queryParams: string = getQueryParams(
