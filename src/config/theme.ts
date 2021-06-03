@@ -1,4 +1,4 @@
-import { DefaultTheme} from 'react-native-paper'
+import { DefaultTheme } from 'react-native-paper'
 
 const theme = {
   ...DefaultTheme,
@@ -12,8 +12,8 @@ const theme = {
 }
 
 export const fontSizes = {
-  xs: 4,
-  sm: 8,
+  xs: 8,
+  sm: 12,
   md: 16,
   lg: 20,
   xl: 24,
