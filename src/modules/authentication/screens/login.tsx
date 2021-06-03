@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, TextInput} from "react-native-paper";
+import {Button, Divider, TextInput} from "react-native-paper";
 import styled from "styled-components/native";
 import CompanyHeader from "../components/CompanyHeader";
 import LinkButton from "../../common/components/LinkButton";
@@ -15,6 +15,11 @@ const MainView = styled.ScrollView.attrs({
   padding: 16px 32px;
 `
 
+const DividerContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`
+
 interface LoginProps {
   navigation: MainNavigationProps<'Login'>
 }
@@ -28,6 +33,13 @@ const Login = ({ navigation }: LoginProps) => {
     <MainView>
       <CompanyHeader subheading="Chist" />
       <TextInput label="Email" placeholder="Your account's email" style={{ marginBottom: 24, marginTop: 32 }}  />
+
+      <DividerContainer style={{ marginBottom: 24 }}>
+        <Divider style={{ flex: 1 }} />
+        <Text style={{ paddingHorizontal: 8 }}>Or</Text>
+        <Divider style={{ flex: 1 }} />
+      </DividerContainer>
+
       <TextInput label="Nickname" placeholder="Your nickname" style={{ marginBottom: 24 }}  />
       <TextInput label="Password" placeholder="Your password" secureTextEntry={true} style={{ marginBottom: 24 }}  />
       <Button mode="contained" style={{ marginBottom: 24 }}>Login</Button>
