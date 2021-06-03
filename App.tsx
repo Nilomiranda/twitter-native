@@ -4,13 +4,17 @@ import { NavigationContainer } from '@react-navigation/native'
 import { Provider as PaperProvider } from 'react-native-paper'
 import theme from './src/config/theme'
 import MainNavigator from './src/modules/navigation/MainNavigator'
+import { QueryClientProvider } from 'react-query'
+import { queryClient } from './src/config/queryClient'
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <MainNavigator />
-      </NavigationContainer>
-    </PaperProvider>
+    <QueryClientProvider client={queryClient}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+          <MainNavigator />
+        </NavigationContainer>
+      </PaperProvider>
+    </QueryClientProvider>
   )
 }
