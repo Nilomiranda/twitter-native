@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Divider } from 'react-native-paper'
 import styled from 'styled-components/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import CompanyHeader from '../components/CompanyHeader'
 import LinkButton from '../../common/components/LinkButton'
 import Text from '../../common/components/Text'
@@ -16,6 +17,7 @@ import { Session } from '../../../interfaces/session'
 import { AxiosResponse } from 'axios'
 import { translateErrors } from '../../../utils/translateErrors'
 import useToast from '../../../hooks/useToast'
+import { AsyncStorageKey } from '../../../config/asyncStorageKeys'
 
 const MainView = styled.ScrollView.attrs({
   contentContainerStyle: {
@@ -91,6 +93,10 @@ const Login = ({ navigation }: LoginProps) => {
       })
 
       if (sessionResponse?.data?.data?.token) {
+        AsyncStorage.setItem(
+          AsyncStorageKey.SESSION_TOKEN,
+          sessionResponse?.data?.data?.token
+        )
         navigation?.navigate('Feed')
       }
     } catch (err) {
