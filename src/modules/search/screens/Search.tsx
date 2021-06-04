@@ -1,8 +1,8 @@
 import React from 'react'
 import Text from '../../common/components/Text'
 
-const Feed = () => {
-  return <Text>Feed</Text>
+const Search = () => {
+  return <Text>Search</Text>
 }
 
-export default Feed
+export default Search

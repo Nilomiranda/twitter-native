@@ -1,8 +1,8 @@
 import React from 'react'
 import Text from '../../common/components/Text'
 
-const Feed = () => {
-  return <Text>Feed</Text>
+const Profile = () => {
+  return <Text>Profile</Text>
 }
 
-export default Feed
+export default Profile

@@ -4,9 +4,9 @@ import Login from '../authentication/screens/Login'
 import SignUp from '../authentication/screens/SignUp'
 import React, { useEffect, useState } from 'react'
 import { MainStackParamList } from './types/mainNavigatorTypes'
-import Feed from '../feed/screens/Feed'
 import { AsyncStorageKey } from '../../config/asyncStorageKeys'
 import CheckingSession from '../authentication/screens/CheckingSession'
+import TabNavigator from './TabNavigator'
 
 const Stack = createStackNavigator<MainStackParamList>()
 
@@ -36,10 +36,14 @@ const MainNavigator = () => {
   }
 
   return (
-    <Stack.Navigator initialRouteName={token ? 'Feed' : 'Login'}>
+    <Stack.Navigator initialRouteName={token ? 'TabNavigator' : 'Login'}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="Feed" component={Feed} />
+      <Stack.Screen
+        name="TabNavigator"
+        component={TabNavigator}
+        options={{ headerLeft: () => null, title: 'Chist' }}
+      />
     </Stack.Navigator>
   )
 }

@@ -97,7 +97,7 @@ const Login = ({ navigation }: LoginProps) => {
           AsyncStorageKey.SESSION_TOKEN,
           sessionResponse?.data?.data?.token
         )
-        navigation?.navigate('Feed')
+        navigation?.navigate('TabNavigator')
       }
     } catch (err) {
       console.log('sign in error', err)
