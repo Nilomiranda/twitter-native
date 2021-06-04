@@ -93,7 +93,7 @@ const SignUp = ({ navigation }: SignUpProps) => {
         password,
       })
       if (sessionResponse?.data?.data?.token) {
-        navigation?.navigate('Feed')
+        navigation?.navigate('TabNavigator')
       }
     } catch (err) {
       console.log('sign up error', err)
