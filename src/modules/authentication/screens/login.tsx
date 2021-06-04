@@ -14,6 +14,8 @@ import { useMutation } from 'react-query'
 import { signIn, SignInPayload } from '../../../services/session'
 import { Session } from '../../../interfaces/session'
 import { AxiosResponse } from 'axios'
+import { translateErrors } from '../../../utils/translateErrors'
+import useToast from '../../../hooks/useToast'
 
 const MainView = styled.ScrollView.attrs({
   contentContainerStyle: {
@@ -49,7 +51,8 @@ const validationSchema = yup.object().shape({
 })
 
 const Login = ({ navigation }: LoginProps) => {
-  const [signingIn, setSignigIn] = useState<boolean>(false)
+  const [signingIn, setSigningIn] = useState<boolean>(false)
+  const toast = useToast()
 
   const {
     handleSubmit,
@@ -78,7 +81,7 @@ const Login = ({ navigation }: LoginProps) => {
     nickname: string
     password: string
   }) => {
-    setSignigIn(true)
+    setSigningIn(true)
 
     try {
       const sessionResponse = await loginMutation?.mutateAsync({
@@ -92,8 +95,14 @@ const Login = ({ navigation }: LoginProps) => {
       }
     } catch (err) {
       console.log('sign in error', err)
+      toast.show({
+        kind: 'error',
+        message:
+          translateErrors(err?.response?.data?.errors) ||
+          'An unexpected error occurred. Please try again later',
+      })
     } finally {
-      setSignigIn(false)
+      setSigningIn(false)
     }
   }
 
