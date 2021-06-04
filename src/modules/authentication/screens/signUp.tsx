@@ -16,6 +16,8 @@ import { Session } from '../../../interfaces/session'
 import { signIn, SignInPayload } from '../../../services/session'
 import { User } from '../../../interfaces/user'
 import { createUser, SignUpPayload } from '../../../services/user'
+import { translateErrors } from '../../../utils/translateErrors'
+import useToast from '../../../hooks/useToast'
 
 const MainView = styled.ScrollView.attrs({
   contentContainerStyle: {
@@ -47,6 +49,7 @@ const validationSchema = yup.object().shape({
 
 const SignUp = ({ navigation }: SignUpProps) => {
   const [signingUp, setSigningUp] = useState<boolean>(false)
+  const toast = useToast()
 
   const {
     handleSubmit,
@@ -94,6 +97,12 @@ const SignUp = ({ navigation }: SignUpProps) => {
       }
     } catch (err) {
       console.log('sign up error', err)
+      toast.show({
+        kind: 'error',
+        message:
+          translateErrors(err?.response?.data?.errors) ||
+          'An unexpected error occurred. Please try again later',
+      })
     } finally {
       setSigningUp(false)
     }
