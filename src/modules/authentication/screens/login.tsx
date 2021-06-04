@@ -63,7 +63,7 @@ const Login = ({ navigation }: LoginProps) => {
     AxiosResponse<{ data: Session }>,
     unknown,
     SignInPayload
-  >((signInMutation) => signIn(signInMutation))
+  >((signInPayload) => signIn(signInPayload))
 
   const handleNavigateToSignUpClick = () => {
     navigation?.navigate('SignUp')
@@ -81,13 +81,13 @@ const Login = ({ navigation }: LoginProps) => {
     setSignigIn(true)
 
     try {
-      const res = await loginMutation?.mutateAsync({
+      const sessionResponse = await loginMutation?.mutateAsync({
         email,
         nickname,
         password,
       })
 
-      if (res?.data?.data?.token) {
+      if (sessionResponse?.data?.data?.token) {
         navigation?.navigate('Feed')
       }
     } catch (err) {
