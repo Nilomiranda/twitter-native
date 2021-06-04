@@ -6,10 +6,12 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: 'rgb(56, 161, 105)',
+    primaryLighter: '#9ca9aa',
+    primaryDark: '#5E5E5E',
+    primaryDarker: '#3d4c51',
     accent: '#ffffff',
     dark: '#222222',
     warning: '#f1c40f',
-    primaryLighter: '#9ca9aa',
   },
 }
 
