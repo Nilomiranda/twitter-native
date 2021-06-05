@@ -13,9 +13,11 @@ interface InputProps {
   label?: string
   placeholder?: string
   error?: string
-  style: StyleProp<TextStyle>
+  style?: StyleProp<TextStyle>
+  inputStyle?: StyleProp<TextStyle>
   onChangeText?: (value: string) => void
   value?: string
+  multiline?: boolean
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters'
 }
 
@@ -24,9 +26,11 @@ const Input = ({
   placeholder,
   error,
   style = {},
+  inputStyle = {},
   onChangeText,
   value,
-  autoCapitalize = 'words',
+  autoCapitalize = 'sentences',
+  multiline = false,
 }: InputProps) => {
   return (
     <InputWrapper style={style}>
@@ -37,6 +41,8 @@ const Input = ({
         onChangeText={onChangeText}
         value={value}
         autoCapitalize={autoCapitalize}
+        style={inputStyle}
+        multiline={multiline}
       />
       {error ? (
         <Text color={'error'} fontSize={'sm'} style={{ marginTop: 8 }}>
