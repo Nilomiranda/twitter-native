@@ -9,6 +9,18 @@ interface TextProps {
   color?: color
   fontSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   style?: StyleProp<TextStyle>
+  weight?:
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900'
 }
 
 const Text = ({
@@ -16,6 +28,7 @@ const Text = ({
   style,
   color = 'dark',
   fontSize = 'md',
+  weight = 'normal',
 }: TextProps) => {
   return (
     <NativeText
@@ -23,6 +36,7 @@ const Text = ({
         ...(style as any),
         color: theme?.colors[color],
         fontSize: fontSizes[fontSize],
+        fontWeight: weight,
       }}
     >
       {children}

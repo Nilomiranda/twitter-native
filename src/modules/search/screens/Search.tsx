@@ -4,8 +4,15 @@ import { Searchbar as PaperSearchbar } from 'react-native-paper'
 import { useQuery } from 'react-query'
 import { User } from '../../../interfaces/user'
 import UsersList from '../components/UsersList'
+import theme from '../../../config/theme'
 
 const MainContainer = styled.View`
+  flex: 1;
+`
+
+const ListContainer = styled.View`
+  padding: 16px;
+  background: ${() => theme?.colors?.accent};
   flex: 1;
 `
 
@@ -38,7 +45,9 @@ const Search = () => {
         value={searchQuery}
         autoCapitalize="none"
       />
-      <UsersList users={data?.users || []} />
+      <ListContainer>
+        <UsersList users={data?.users || []} />
+      </ListContainer>
     </MainContainer>
   )
 }

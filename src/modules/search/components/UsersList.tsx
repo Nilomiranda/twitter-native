@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { User } from '../../../interfaces/user'
 import UserCard from './UserCard'
 
@@ -21,7 +21,11 @@ const UsersList = ({
   return (
     <FlatList
       data={users}
-      renderItem={({ item }: { item: User }) => <UserCard user={item} />}
+      renderItem={({ item }: { item: User }) => (
+        <View style={{ marginBottom: 16 }}>
+          <UserCard user={item} />
+        </View>
+      )}
       onEndReached={onLoadMore}
       onEndReachedThreshold={0.5}
     />
