@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import {
   MainNavigationProps,
   MainStackParamList,
@@ -12,6 +12,7 @@ import { ActivityIndicator } from 'react-native-paper'
 import ProfileCard from '../components/ProfileCard'
 import PublicationsList from '../../feed/components/PublicationsList'
 import { Tweet } from '../../../interfaces/tweet'
+import { UserContext } from '../../../contexts/CurrentUser'
 
 const MainContainer = styled.View`
   flex: 1;
@@ -26,10 +27,12 @@ interface ProfilePageProps {
 }
 
 const Profile = ({ navigation, route }: ProfilePageProps) => {
+  const { user: loggedUser } = useContext(UserContext)
+
   const { data, isLoading } = useQuery<{ user: User }>(
-    `users/${route?.params?.userId}`,
+    `users/${route?.params?.userId || loggedUser?.id}`,
     {
-      enabled: !!route?.params?.userId,
+      enabled: !!route?.params?.userId || !!loggedUser?.id,
     }
   )
 

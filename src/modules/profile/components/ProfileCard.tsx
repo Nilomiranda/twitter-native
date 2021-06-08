@@ -34,6 +34,10 @@ const ProfileCard = ({ user }: ProfileCardProps) => {
   const { user: loggedUser } = useContext(UserContext)
   const [isFollowing, toggleFollowing] = useFollow(user?.id || 0)
 
+  const handleEditProfilePress = () => {
+    return null
+  }
+
   return (
     <MainContainer>
       <UserAvatar
@@ -70,7 +74,16 @@ const ProfileCard = ({ user }: ProfileCardProps) => {
         >
           {isFollowing ? 'Unfollow' : 'Follow'}
         </Button>
-      ) : null}
+      ) : (
+        <Button
+          icon="pencil"
+          mode="outlined"
+          uppercase={false}
+          onPress={handleEditProfilePress}
+        >
+          Edit profile
+        </Button>
+      )}
     </MainContainer>
   )
 }
