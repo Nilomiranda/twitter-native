@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { Tweet } from '../../../interfaces/tweet'
 import PublicationCard from './PublicationCard'
 import { queryClient } from '../../../config/queryClient'
+import Text from '../../common/components/Text'
 
 interface PublicationsListProps {
   publications: Tweet[]
@@ -40,7 +41,11 @@ const PublicationsList = ({
   }, [publications])
 
   if (!publications?.length && !loading) {
-    return null
+    return (
+      <View style={{ alignItems: 'center' }}>
+        <Text>No pulication to show 😢</Text>
+      </View>
+    )
   }
 
   return (

@@ -7,6 +7,7 @@ import { MainStackParamList } from './types/mainNavigatorTypes'
 import { AsyncStorageKey } from '../../config/asyncStorageKeys'
 import CheckingSession from '../authentication/screens/CheckingSession'
 import TabNavigator from './TabNavigator'
+import Profile from '../profile/screens/Profile'
 
 const Stack = createStackNavigator<MainStackParamList>()
 
@@ -44,6 +45,7 @@ const MainNavigator = () => {
         component={TabNavigator}
         options={{ headerLeft: () => null, title: 'Chist' }}
       />
+      <Stack.Screen name="UserProfile" component={Profile} />
     </Stack.Navigator>
   )
 }

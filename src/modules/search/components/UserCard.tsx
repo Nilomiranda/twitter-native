@@ -5,8 +5,10 @@ import { User } from '../../../interfaces/user'
 import styled from 'styled-components/native'
 import useFollow from '../../../hooks/useFollow'
 import Text from '../../common/components/Text'
+import { MainNavigationProps } from '../../navigation/types/mainNavigatorTypes'
+import { useNavigation } from '@react-navigation/native'
 
-const Card = styled.View`
+const Card = styled.Pressable`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,9 +35,16 @@ interface UserCardProps {
 const UserCard = ({ user }: UserCardProps) => {
   const { user: loggedUser } = useContext(UserContext)
   const [isFollowing, toggleFollowing] = useFollow(user?.id)
+  const navigation = useNavigation<MainNavigationProps<'TabNavigator'>>()
+
+  const handleUserPress = () => {
+    if (user?.id) {
+      navigation?.navigate('UserProfile', { userId: user.id })
+    }
+  }
 
   return (
-    <Card>
+    <Card onPress={handleUserPress}>
       <UserAvatar
         size={48}
         source={{

@@ -4,6 +4,9 @@ export type MainStackParamList = {
   Login: undefined
   SignUp: undefined
   TabNavigator: undefined
+  UserProfile: {
+    userId: number
+  }
 }
 
 export type MainNavigationProps<CurrentRoute extends keyof MainStackParamList> =
